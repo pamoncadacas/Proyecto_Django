@@ -1,0 +1,26 @@
+<!--templates/base.html-->
+<html>
+    <head>
+        <title> Django Blog </title>
+        {% load static %}
+        <link rel="stylesheet" href = "{% static 'bootstrap/css/estilos.css' %}">
+
+    <body>
+        <header> 
+            <img border = "2px" src = "https://tractive.com/blog/wp-content/uploads/2019/08/outdoor-cat-advantages-and-disadvantages-400x300.jpg" height="200px" width="250px"/>
+            {% if user.is_authenticated %} 
+                <p> Hola {{ user.username }}!</p>
+                <p><a href="{% url 'logout' %}">Logout</a></p>
+            {% else %}
+                <p >Usuario no ha iniciado sesion.</p>
+                <a href="{% url 'login' %}"><button> Log in </button> </a>
+                <a href="{% url 'signup' %}"><button> Sign Up </button> </a>
+            {% endif %} 
+            <h1> <button> <a href="{% url 'home' %}"> Django Blog </a> </button> </h1>
+        </header>
+        <div>
+            {% block content %} 
+            {% endblock content %}
+        </div>
+    </body>
+</html>
